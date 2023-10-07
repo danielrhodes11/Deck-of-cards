@@ -47,23 +47,22 @@ let firstCardOffset = null;
 // API endpoint for shuffling the deck
 const deckUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
 
-// Function to create a new card element based on card data
+
 function createCardElement(cardData) {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
     newCard.style.backgroundImage = `url(${cardData.cards[0].image})`;
-    newCard.style.zIndex = cardIndex; // Increase z-index for stacking
+    newCard.style.zIndex = cardIndex;
 
     if (cardIndex === 0) {
-        // For the first card, set it vertically centered
+
         newCard.style.transform = 'rotate(0deg)';
-        newCard.style.left = 'calc(50% - 75px)'; // Center horizontally
-        newCard.style.top = 'calc(50% - 110px)'; // Center vertically
+        newCard.style.left = 'calc(50% - 75px)';
+        newCard.style.top = 'calc(50% - 110px)';
     } else {
-        // For subsequent cards, calculate random position offsets relative to the first card
+
         const randomAngle = Math.random() * 90 - 45;
-        const randomLeft = Math.random() * 40 - 20; // Adjust the range as needed
-        const randomTop = Math.random() * 20 - 10; // Adjust the range as needed
+        const randomLeft = Math.random() * 40 - 20;
         newCard.style.transform = `rotate(${randomAngle}deg)`;
         newCard.style.left = `calc(50% - 75px + ${randomLeft}px)`;
         newCard.style.top = `calc(50% - 110px + ${randomTop}px)`;

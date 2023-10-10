@@ -1,33 +1,42 @@
 // PART 1
 
 
-// const facoriteNumber = 7;
-// const apiUrl = `http://numbersapi.com/${facoriteNumber}?json`;
+// const favoriteNumber = 7;
+// const apiUrl = `http://numbersapi.com/${favoriteNumber}?json`;
 
 // const fetchNumber = async () => {
-//     const response = await fetch(apiUrl);
-//     const data = await response.json();
-//     console.log(data);
+//     try {
+//         const response = await fetch(apiUrl);
+//         const data = await response.json();
+//         console.log(data);
+//     } catch (error) {
+//         console.error('An error occurred:', error);
+//     }
 // }
 
 // fetchNumber();
 
 // const favNumbers = [7, 11, 22];
-// const apiUrl = `http://numbersapi.com/`;
+// const numbersApiUrl = 'http://numbersapi.com/';
 
 // const fetchNumbers = async () => {
-//     const response = await Promise.all(
-//         favNumbers.map(num => fetch(`${apiUrl}${num}?json`))
-//     );
-//     const data = await Promise.all(response.map(res => res.json()));
-//     console.log(data);
+//     try {
+//         const responses = await Promise.all(
+//             favNumbers.map(num => fetch(`${numbersApiUrl}${num}?json`))
+//         );
+//         const data = await Promise.all(responses.map(res => res.json()));
+//         console.log(data);
+//     } catch (error) {
+//         console.error('An error occurred:', error);
+//     }
 // }
 
-// fetchNumbers()
+// fetchNumbers();
+
 
 // 7 is the figurative number of seas
 // 11 is the approximate periodicity of a sunspot cycle in years
-// 22 is the typical (minimum) number of episodes in a season for a television program broadcast on a major American network
+// 22 is the typical(minimum) number of episodes in a season for a television program broadcast on a major American network
 
 
 //  facts about 7
@@ -42,11 +51,9 @@
 
 let deckId = null;
 let cardIndex = 0;
-let firstCardOffset = null;
 
 // API endpoint for shuffling the deck
 const deckUrl = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
-
 
 function createCardElement(cardData) {
     const newCard = document.createElement('div');
@@ -55,21 +62,20 @@ function createCardElement(cardData) {
     newCard.style.zIndex = cardIndex;
 
     if (cardIndex === 0) {
-
         newCard.style.transform = 'rotate(0deg)';
         newCard.style.left = 'calc(50% - 75px)';
         newCard.style.top = 'calc(50% - 110px)';
     } else {
-
         const randomAngle = Math.random() * 90 - 45;
         const randomLeft = Math.random() * 40 - 20;
         newCard.style.transform = `rotate(${randomAngle}deg)`;
         newCard.style.left = `calc(50% - 75px + ${randomLeft}px)`;
-        newCard.style.top = `calc(50% - 110px + ${randomTop}px)`;
+        newCard.style.top = `calc(50% - 110px + ${randomLeft}px)`;
     }
 
     return newCard;
 }
+
 
 // Function to draw a card
 const drawCard = async () => {
@@ -108,7 +114,6 @@ const drawCard = async () => {
 function shuffleDeck() {
     deckId = null;
     cardIndex = 0;
-    firstCardOffset = null;
 
     const cardContainer = document.getElementById('cardContainer');
     cardContainer.innerHTML = '';
@@ -124,6 +129,7 @@ drawButton.addEventListener('click', drawCard);
 
 const shuffleButton = document.getElementById('shuffleButton');
 shuffleButton.addEventListener('click', shuffleDeck);
+
 
 
 
